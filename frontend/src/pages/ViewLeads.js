@@ -31,7 +31,7 @@ function ViewLeads() {
         try {
 
             const res = await axios.get(
-                "http://localhost:5000/api/leads"
+                "https://efos-crm-production.up.railway.app/api/leads"
             );
 
             setLeads(res.data);
@@ -54,7 +54,7 @@ function ViewLeads() {
         try {
 
             await axios.delete(
-                `http://localhost:5000/api/leads/${id}`
+                `https://efos-crm-production.up.railway.app/api/leads/${id}`
             );
 
             alert("Lead Deleted Successfully");
@@ -147,7 +147,7 @@ const updateLead = async () => {
 
         await axios.put(
 
-            `http://localhost:5000/api/leads/${editingLead.id}`,
+            `https://efos-crm-production.up.railway.app/api/leads/${editingLead.id}`,
 
             {
                 ...editingLead,

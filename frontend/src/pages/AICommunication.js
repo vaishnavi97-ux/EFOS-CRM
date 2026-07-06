@@ -30,7 +30,7 @@ const fetchLeads = async () => {
         setLoading(true);
 
         const res = await axios.get(
-            "http://localhost:5000/api/communication/leads"
+            "https://efos-crm-production.up.railway.app/api/communication/leads"
         );
 
         setLeads(res.data);

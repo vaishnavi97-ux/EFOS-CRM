@@ -35,7 +35,7 @@ function FollowUps() {
             setLoading(true);
 
             const res = await axios.get(
-                "http://localhost:5000/api/leads"
+                "https://efos-crm-production.up.railway.app/api/leads"
             );
 
             setLeads(res.data);
@@ -124,7 +124,7 @@ function FollowUps() {
 
         await axios.put(
 
-            `http://localhost:5000/api/leads/${id}`,
+            `https://efos-crm-production.up.railway.app/api/leads/${id}`,
 
             {
 

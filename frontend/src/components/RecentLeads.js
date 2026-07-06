@@ -13,7 +13,7 @@ function RecentLeads() {
         try {
 
             const res = await axios.get(
-                "http://localhost:5000/api/leads/recent"
+                "https://efos-crm-production.up.railway.app/api/leads/recent"
             );
 
             setRecent(res.data);

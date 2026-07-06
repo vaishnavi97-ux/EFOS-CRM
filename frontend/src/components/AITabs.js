@@ -44,7 +44,7 @@ function AITabs({ lead,selectedTemplate }) {
 
             const res = await axios.post(
 
-                "http://localhost:5000/api/communication/generate",
+                "https://efos-crm-production.up.railway.app/api/communication/generate",
 
                 {
 

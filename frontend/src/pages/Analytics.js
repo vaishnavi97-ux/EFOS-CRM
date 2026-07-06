@@ -27,7 +27,7 @@ function Analytics() {
         try {
 
             const res = await axios.get(
-                "http://localhost:5000/api/leads/stats"
+                "https://efos-crm-production.up.railway.app/api/leads/stats"
             );
 
             setStats(res.data);
