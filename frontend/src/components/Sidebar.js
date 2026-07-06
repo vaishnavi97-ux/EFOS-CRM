@@ -6,9 +6,7 @@ import {
   FaUsers,
   FaChartPie,
   FaCalendarAlt,
-  FaFileAlt,
   FaCog,
-  FaSignOutAlt,
   FaUserCircle
 } from "react-icons/fa";
 

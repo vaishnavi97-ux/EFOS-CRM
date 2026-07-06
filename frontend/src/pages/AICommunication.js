@@ -14,7 +14,6 @@ function AICommunication() {
     const [leads, setLeads] = useState([]);
 const [selectedLead, setSelectedLead] = useState(null);
 const [selectedTemplate, setSelectedTemplate] = useState("");
-const [loading, setLoading] = useState(false);
 const [showLeadDetails, setShowLeadDetails] = useState(false);
 
 useEffect(() => {
