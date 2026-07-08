@@ -31,32 +31,51 @@ router.post("/login", (req, res) => {
   const { email, password } = req.body;
 
   db.query(
-    "SELECT * FROM users WHERE email=?",
+    "SELECT * FROM users WHERE email = ?",
     [email],
     async (err, result) => {
-      if (err) return res.status(500).json(err);
+      if (err) {
+        console.error("Database Query Error:", err);
+        return res.status(500).json({ message: "Database Error", error: err });
+      }
 
-      if (result.length === 0)
+      if (!result || result.length === 0) {
         return res.status(400).json({ message: "User not found" });
+      }
 
-      const user = result[0];
+      try {
+        const user = result[0];
 
-      const validPassword = await bcrypt.compare(password, user.password);
+        console.log("User Found:", user.email);
 
-      if (!validPassword)
-        return res.status(400).json({ message: "Invalid Password" });
+        const validPassword = await bcrypt.compare(password, user.password);
 
-      const token = jwt.sign(
-        { id: user.id, role: user.role },
-        "efos_secret_key",
-        { expiresIn: "1d" }
-      );
+        console.log("Password Match:", validPassword);
 
-      res.json({
-        message: "Login Successful",
-        token,
-        user,
-      });
+        if (!validPassword) {
+          return res.status(400).json({ message: "Invalid Password" });
+        }
+
+        const token = jwt.sign(
+          {
+            id: user.id,
+            role: user.role,
+          },
+          "efos_secret_key",
+          {
+            expiresIn: "1d",
+          }
+        );
+
+        return res.json({
+          message: "Login Successful",
+          token,
+          user,
+        });
+      } catch (error) {
+        console.error("Login Error:", error);
+        return res.status(500).json({ message: "Login Failed", error });
+      }
     }
   );
 });
